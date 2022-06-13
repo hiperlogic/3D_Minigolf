@@ -44,6 +44,9 @@ func change_state(new_state):
 			$Arrow.hide()
 
 func _input(event):
+	if event is InputEventMouseMotion:
+		if state == SET_ANGLE:
+			$Arrow.rotation.y -= event.relative.x/150
 	if event.is_action_pressed("click"):
 		match state:
 			SET_ANGLE:
@@ -56,8 +59,8 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	match state:
-		SET_ANGLE:
-			animate_angle(delta)
+		#SET_ANGLE:
+		#	animate_angle(delta)
 		SET_POWER:
 			animate_power_bar(delta)
 		SHOOT:
