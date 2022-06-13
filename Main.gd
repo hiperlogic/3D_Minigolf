@@ -8,6 +8,8 @@ var power_speed = 100
 var angle_change = 1
 var angle_speed = 1.1
 
+var hole_dir
+
 enum {SET_ANGLE, SET_POWER, SHOOT, WIN}
 
 
@@ -29,6 +31,7 @@ func change_state(new_state):
 		SET_ANGLE:
 			$Arrow.transform.origin = $Ball.transform.origin
 			$Arrow.show()
+			set_start_angle()
 		SET_POWER:
 			pass
 		SHOOT:
@@ -71,12 +74,18 @@ func animate_power_bar(delta):
 
 func animate_angle(delta):
 	$Arrow.rotation.y += angle_speed * angle_change * delta
-	if $Arrow.rotation.y > PI/2:
+	if $Arrow.rotation.y > hole_dir + PI/1.5:
 		angle_change = -1
-	if $Arrow.rotation.y < -PI/2:
+	if $Arrow.rotation.y < hole_dir + -PI/1.5:
 		angle_change = 1
 		
 
+
+func set_start_angle():
+	var hole_pos = Vector2($Hole.transform.origin.z, $Hole.transform.origin.x)
+	var ball_pos = Vector2($Ball.transform.origin.z, $Ball.transform.origin.x)
+	hole_dir = (ball_pos - hole_pos).angle()
+	$Arrow.rotation.y = hole_dir
 
 func _on_Hole_body_entered(body):
 	if body.name == 'Ball':

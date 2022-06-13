@@ -1,6 +1,7 @@
 extends RigidBody
 
 signal stopped
+signal out_of_field
 
 func shoot(angle, power):
 	var force = Vector3(0,0,-2).rotated(Vector3(0,1,0), angle)
@@ -10,7 +11,7 @@ func _integrate_forces(state):
 	if state.linear_velocity.length()<0.1:
 		emit_signal("stopped")
 		state.linear_velocity = Vector3()
-		
+	
 
 
 # Called when the node enters the scene tree for the first time.
