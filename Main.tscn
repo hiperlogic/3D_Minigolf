@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TileScene/GolfMesh.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://Items/Ball/Ball.tscn" type="PackedScene" id=2]
@@ -7,8 +7,18 @@
 [ext_resource path="res://Main.gd" type="Script" id=5]
 [ext_resource path="res://GimbalOut.gd" type="Script" id=6]
 
+[sub_resource type="ProceduralSky" id=5]
+sky_top_color = Color( 1, 0.807843, 0.360784, 1 )
+sky_horizon_color = Color( 0.831373, 0.168627, 0.168627, 1 )
+
 [sub_resource type="Environment" id=1]
+background_mode = 2
+background_sky = SubResource( 5 )
 ambient_light_color = Color( 1, 1, 1, 1 )
+ssao_enabled = true
+ssao_intensity = 1.5
+ssao_quality = 2
+dof_blur_far_enabled = true
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.279251
@@ -62,6 +72,12 @@ script = ExtResource( 6 )
 
 [node name="Camera" type="Camera" parent="GimbalOut/GimbalIn"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.739396, 0.673271, 0, -0.673271, -0.739396, 0, 9.64367, -60.2049 )
+light_color = Color( 1, 0.741176, 0.243137, 1 )
+light_energy = 0.413
+shadow_enabled = true
 
 [connection signal="body_entered" from="Hole" to="." method="_on_Hole_body_entered"]
 [connection signal="stopped" from="Ball" to="." method="_on_Ball_stopped"]

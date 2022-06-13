@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Items/Ball/Ball.gd" type="Script" id=1]
+[ext_resource path="res://assets/golf_ball/textures/ball_normal_map.png" type="Texture" id=2]
 
 [sub_resource type="PhysicsMaterial" id=3]
 bounce = 0.2
 
+[sub_resource type="SpatialMaterial" id=4]
+normal_enabled = true
+normal_scale = -1.49
+normal_texture = ExtResource( 2 )
+
 [sub_resource type="SphereMesh" id=1]
+material = SubResource( 4 )
 radius = 0.15
 height = 0.3
 
