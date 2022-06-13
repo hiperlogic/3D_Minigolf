@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://TileScene/GolfMesh.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://Items/Ball/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/Arrow/Arrow.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 1, 1, 1, 1 )
@@ -42,3 +43,6 @@ shape = SubResource( 2 )
 
 [node name="Ball" parent="Hole" instance=ExtResource( 2 )]
 transform = Transform( 0.99759, 0.0693908, 0, -0.0692945, 0.996204, -0.0526845, -0.00365582, 0.0525575, 0.998611, -3.5924, 0.56881, 1.3657 )
+
+[node name="Arrow" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.33265, 1.79038, 2.59839 )
