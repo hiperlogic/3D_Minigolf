@@ -51,3 +51,6 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.33265, 1.79038, 2.598
 transform = Transform( 0.99759, 0.0693908, 0, -0.0692945, 0.996204, -0.0526845, -0.00365582, 0.0525575, 0.998611, -2.59716, 1.47307, 2.77537 )
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
+
+[connection signal="body_entered" from="Hole" to="." method="_on_Hole_body_entered"]
+[connection signal="stopped" from="Ball" to="." method="_on_Ball_stopped"]

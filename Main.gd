@@ -76,3 +76,15 @@ func animate_angle(delta):
 	if $Arrow.rotation.y < -PI/2:
 		angle_change = 1
 		
+
+
+func _on_Hole_body_entered(body):
+	if body.name == 'Ball':
+		print("Win!")
+		change_state(WIN)
+	pass # Replace with function body.
+
+
+func _on_Ball_stopped():
+	if state == SHOOT:
+		change_state(SET_ANGLE)
