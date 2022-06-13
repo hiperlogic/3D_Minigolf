@@ -49,6 +49,7 @@ func _input(event):
 		if state == SET_ANGLE:
 			$Arrow.rotation.y -= event.relative.x/150
 	if event.is_action_pressed("click"):
+		$Ball.revive()
 		match state:
 			SET_ANGLE:
 				change_state(SET_POWER)
@@ -111,4 +112,13 @@ func _on_Area_body_entered(body):
 func _on_Cam3_body_entered(body):
 	if body.name == 'Ball':
 		$Camera3.current = true
+	pass # Replace with function body.
+
+
+func _on_Area_body_exited(body):
+	if body.name == 'Ball':
+		$Ball.full_stop()
+		$Ball.transform.origin = $Tee.transform.origin
+		$Camera.current = true
+		change_state(SET_ANGLE)
 	pass # Replace with function body.

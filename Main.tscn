@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TileScene/GolfMesh.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://Items/Ball/Ball.tscn" type="PackedScene" id=2]
@@ -14,6 +14,9 @@ ambient_light_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.279251
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 6.15955, 4.13404, 4.04072 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -71,7 +74,13 @@ transform = Transform( 0.99759, 0.0693908, 0, -0.0692945, 0.996204, -0.0526845, 
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
 
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 4 )
+
 [connection signal="body_entered" from="Camera2/Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_entered" from="Camera3/Cam3" to="." method="_on_Cam3_body_entered"]
 [connection signal="body_entered" from="Hole" to="." method="_on_Hole_body_entered"]
 [connection signal="stopped" from="Ball" to="." method="_on_Ball_stopped"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
