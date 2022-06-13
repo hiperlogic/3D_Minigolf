@@ -19,7 +19,6 @@ enum {SET_ANGLE, SET_POWER, SHOOT, WIN}
 # Place the ball in the Tee
 ###
 func _ready():
-	$Camera.current=true
 	$Arrow.hide()
 	$Ball.transform.origin = $Tee.transform.origin
 	change_state(SET_ANGLE)
@@ -103,16 +102,6 @@ func _on_Ball_stopped():
 	if state == SHOOT:
 		change_state(SET_ANGLE)
 
-
-func _on_Area_body_entered(body):
-	if body.name == 'Ball':
-		$Camera2.current = true
-
-
-func _on_Cam3_body_entered(body):
-	if body.name == 'Ball':
-		$Camera3.current = true
-	pass # Replace with function body.
 
 
 func _on_Area_body_exited(body):
